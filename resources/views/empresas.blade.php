@@ -11,8 +11,18 @@
             {{Session::get('success')}}
         </div>
     @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form class="form" method="post" action="{{ route('empresas.store') }}">
         @csrf
+        <h2 class="mb-5">Empresa</h2>
         <div class="row">
             <div class="form-group col-4">
                 <label>Nombre</label>
@@ -26,7 +36,7 @@
             </div>
             <div class="form-group col-4">
                 <label>CIF</label>
-                <input type="text" class="form-control {{ $errors->has('cif') ? 'error' : '' }}" value="{!! old('cif') !!}" name="cif" id="cif">
+                <input type="text" class="form-control {{ $errors->has('cif') ? 'error' : '' }}" value="{!! old('cif') !!}" maxlength="9" name="cif" id="cif">
                 @if ($errors->has('cif'))
                 <div class="error">
                     {{ $errors->first('cif') }}
@@ -46,7 +56,7 @@
         <div class="row">
             <div class="form-group col-4">
                 <label>Teléfono 1</label>
-                <input type="tel" class="form-control {{ $errors->has('telefono1') ? 'error' : '' }}" value="{!! old('telefono1') !!}" name="telefono1"
+                <input type="tel" class="form-control {{ $errors->has('telefono1') ? 'error' : '' }}" value="{!! old('telefono1') !!}" maxlength="9" name="telefono1"
                     id="telefono1" maxlength="9">
                 @if ($errors->has('telefono1'))
                 <div class="error">
@@ -56,7 +66,7 @@
             </div>
             <div class="form-group col-4">
                 <label>Teléfono 2 (Opcional)</label>
-                <input type="text" class="form-control {{ $errors->has('telefono2') ? 'error' : '' }}" value="{!! old('telefono2') !!}" name="telefono2"
+                <input type="text" class="form-control {{ $errors->has('telefono2') ? 'error' : '' }}" value="{!! old('telefono2') !!}" maxlength="9" name="telefono2"
                     id="telefono2">
                 @if ($errors->has('telefono2'))
                 <div class="error">
@@ -96,7 +106,7 @@
             </div>
             <div class="form-group col-2">
                 <label>Código Postal</label>
-                <input type="text" class="form-control {{ $errors->has('cp') ? 'error' : '' }}" value="{!! old('cp') !!}" name="cp" id="cp">
+                <input type="text" class="form-control {{ $errors->has('cp') ? 'error' : '' }}" maxlength="5" value="{!! old('cp') !!}" name="cp" id="cp">
                 @if ($errors->has('cp'))
                 <div class="error">
                     {{ $errors->first('cp') }}
@@ -158,7 +168,7 @@
             </div>
             <div class="form-group col-5">
                 <label>NIF del representante</label>
-                <input type="text" class="form-control {{ $errors->has('representante_nif') ? 'error' : '' }}" value="{!! old('representante_nif') !!}" name="representante_nif"
+                <input type="text" class="form-control {{ $errors->has('representante_nif') ? 'error' : '' }}" maxlength="9" value="{!! old('representante_nif') !!}" name="representante_nif"
                     id="representante_nif">
                 @if ($errors->has('representante_nif'))
                 <div class="error">

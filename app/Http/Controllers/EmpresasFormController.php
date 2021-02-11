@@ -17,20 +17,20 @@ class EmpresasFormController extends Controller
   
           // Form validation
           $this->validate($request, [
-              'nombre' => 'required',
-              'cif' => 'required',
-              'email' => 'required',
-              'direccion' => 'required',
-              'poblacion'=>'required',
-              'cp' => 'required',
-              'telefono1' => 'required',
-              'telefono2' => 'nullable',
+              'nombre' => 'required|min:3|max:30',
+              'cif' => 'required|min:9|max:9',
+              'email' => 'required|email|email:rfc',
+              'direccion' => 'required|min:5|max:40',
+              'poblacion'=>'required|min:3|max:20',
+              'cp' => 'required|digits:5',
+              'telefono1' => 'required|digits:9',
+              'telefono2' => 'nullable|digits:9',
               'fax' => 'nullable',
-              'sector_productivo' => 'required',
-              'actividad_principal' => 'required',
-              'titularidad' => 'required',
-              'representante_nombre' => 'required',
-              'representante_nif' => 'required'
+              'sector_productivo' => 'required|in:primario,secundario,terciario',
+              'actividad_principal' => 'required|min:3|max:40',
+              'titularidad' => 'required|in:publica,privada',
+              'representante_nombre' => 'required|min:3|max:40',
+              'representante_nif' => 'required|min:9|max:9'
            ]);
 
             //  Store data in database
